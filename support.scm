@@ -2,8 +2,8 @@
 ;
 ;
 ; *************************************************************************
-; Copyright (c) 1992 Xerox Corporation.  
-; All Rights Reserved.  
+; Copyright (c) 1992 Xerox Corporation.
+; All Rights Reserved.
 ;
 ; Use, reproduction, and preparation of derivative works are permitted.
 ; Any copy of this software or of any derivative work must include the

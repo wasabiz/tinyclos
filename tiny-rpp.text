@@ -2,8 +2,8 @@
 ;
 ;
 ; **********************************************************************
-; Copyright (c) 1992 Xerox Corporation.  
-; All Rights Reserved.  
+; Copyright (c) 1992 Xerox Corporation.
+; All Rights Reserved.
 ;
 ; Use, reproduction, and preparation of derivative works are permitted.
 ; Any copy of this software or of any derivative work must include the
@@ -38,7 +38,7 @@
 ; 1.2  12/02/92  Gregor  See tiny-clos.scm.
 ; 1.3  12/08/92  Gregor  See tiny-clos.scm.
 ;
-;       
+;
 (define tiny-clos-version "1.3.RPP")
 
 ;
@@ -57,7 +57,7 @@
 ; in AMOP.  This implementation is not at all optimized, but the MOP is
 ; designed so that it can be optimized.  In fact, this MOP allows better
 ; optimization of slot access extenstions than those in AMOP.
-; 
+;
 ;
 ;
 ; In addition to calling a generic, the entry points to the default base
@@ -71,7 +71,7 @@
 ;   (MAKE class . initargs)
 ;   (INITIALIZE instance initargs)            ;Add methods to this,
 ;                                             ;don't call it directly.
-;   
+;
 ;   (SLOT-REF  object slot-name)
 ;   (SLOT-SET! object slot-name new-value)
 ;
@@ -115,7 +115,7 @@
 ;
 ; The intercessory protocol looks like (generics in uppercase):
 ;
-;   make                        
+;   make
 ;     ALLOCATE-INSTANCE
 ;     INITIALIZE                   (really a base-level generic)
 ;
@@ -137,7 +137,7 @@
 ;  %allocate-instance (nfields)
 ;  %instance-ref      (instance field-number)
 ;  %instance-set!     (instance field-number new)
-;  
+;
 ;  %allocate-entity   (nfields)
 ;  %entity-ref        (instance field-number)
 ;  %entity-set!       (instance field-number new)
@@ -157,7 +157,7 @@
 (define <class>
     (make <class>
 	  'direct-supers (list <object>)
-	  'direct-slots  
+	  'direct-slots
 	     (list 'direct-supers           ;(class ...)
 		   'direct-slots            ;((name . options) ...)
 		   'cpl                     ;(class ...)
@@ -232,7 +232,7 @@
 ; The initialization protocol
 ;
 (define initialize (make-generic))
-	    
+
 
 ;
 ; The instance structure protocol.
@@ -519,5 +519,3 @@
       (make <method>
 	    'specializers specializers
 	    'procedure    procedure)))
-
-

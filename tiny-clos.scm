@@ -2,8 +2,8 @@
 ;
 ;
 ; **********************************************************************
-; Copyright (c) 1992 Xerox Corporation.  
-; All Rights Reserved.  
+; Copyright (c) 1992 Xerox Corporation.
+; All Rights Reserved.
 ;
 ; Use, reproduction, and preparation of derivative works are permitted.
 ; Any copy of this software or of any derivative work must include the
@@ -56,7 +56,7 @@
 ;                        are no applicable methods or next methods.
 ; 1.4  12/10/92  Gregor  Flush filter-in for collect-if.  Add news
 ;                        classes <input-port> and <output-port>.
-;                        Also add 
+;                        Also add
 ;
 ; 1.5  12/17/92  Gregor  Minor changes to class of and primitive
 ;                        classes to try and deal with '() and #f
@@ -70,7 +70,7 @@
 ; 1.7   8/9/94   Gregor  Add Scheme 48 to support.scm.
 ;
 ;
-;       
+;
 (define tiny-clos-version "1.7")
 
 '(;Stuff to make emacs more reasonable.
@@ -97,7 +97,7 @@
 ; in AMOP.  This implementation is not at all optimized, but the MOP is
 ; designed so that it can be optimized.  In fact, this MOP allows better
 ; optimization of slot access extenstions than those in AMOP.
-; 
+;
 ;
 ;
 ; In addition to calling a generic, the entry points to the default base
@@ -111,7 +111,7 @@
 ;   (MAKE class . initargs)
 ;   (INITIALIZE instance initargs)            ;Add methods to this,
 ;                                             ;don't call it directly.
-;   
+;
 ;   (SLOT-REF  object slot-name)
 ;   (SLOT-SET! object slot-name new-value)
 ;
@@ -157,7 +157,7 @@
 ;
 ; The intercessory protocol looks like (generics in uppercase):
 ;
-;   make                        
+;   make
 ;     ALLOCATE-INSTANCE
 ;     INITIALIZE                   (really a base-level generic)
 ;
@@ -175,7 +175,7 @@
 
 ;
 ; OK, now let's get going.  But, as usual, before we can do anything
-; interesting, we have to muck around for a bit first.  First, we need  
+; interesting, we have to muck around for a bit first.  First, we need
 ; to load the support library.
 ;
 ; Note that there is no extension on the filename in the following load,
@@ -197,10 +197,10 @@
 ; none of this is visible to base- or MOP-level programmers.
 ;
 ; A few things to note, that have influenced the way all this is done:
-;  
+;
 ;   - R4RS doesn't provide a mechanism for specializing the
 ;     behavior of the printer for certain objects.
-;     
+;
 ;   - Some Scheme implementations bomb when printing circular
 ;     structures -- that is, arrays and/or lists that somehow
 ;     point back to themselves.
@@ -261,7 +261,7 @@
 	    (vector-set! vector 2 class)
 	    (set! instances (cons (cons closure vector) instances))
 	    closure)))
-		   
+
   (set! %instance?
         (lambda (x) (not (null? (get-vector x)))))
 
@@ -274,19 +274,19 @@
 	(lambda (closure)
 	  (let ((vector (get-vector closure)))
 	    (vector-set! vector 2 closure))))
-		   
+
   (set! %set-instance-proc!
         (lambda (closure proc)
 	  (let ((vector (get-vector closure)))
 	    (if (vector-ref vector 1)
 		(error "Can't set procedure of instance.")
 		(vector-set! vector 0 proc)))))
-	
+
   (set! %instance-ref
         (lambda (closure index)
 	  (let ((vector (get-vector closure)))
 	    (vector-ref vector (+ index 3)))))
-		  
+
   (set! %instance-set!
         (lambda (closure index new-value)
 	  (let ((vector (get-vector closure)))
@@ -303,12 +303,12 @@
 ;
 ; Note that this implementation of class-of assumes the name of a the
 ; primitive classes that are set up later.
-; 
+;
 (define class-of
     (lambda (x)
       (cond ((%instance? x)  (%instance-class x))
 
-	    ((pair? x)        <pair>)         ;If all Schemes were IEEE 
+	    ((pair? x)        <pair>)         ;If all Schemes were IEEE
 	    ((null? x)        <null>)         ;compliant, the order of
 	    ((boolean? x)     <boolean>)      ;these wouldn't matter?
 	    ((symbol? x)      <symbol>)
@@ -319,7 +319,7 @@
 	    ((string? x)      <string>)
 	    (( input-port? x)  <input-port>)
 	    ((output-port? x) <output-port>)
-	    
+
 
 	    )))
 
@@ -456,10 +456,10 @@
 ; because the first and fourth both contribute to <class>.
 ;
 (define the-slots-of-a-class     ;
-    '(direct-supers              ;(class ...)        
+    '(direct-supers              ;(class ...)
       direct-slots               ;((name . options) ...)
-      cpl                        ;(class ...) 
-      slots                      ;((name . options) ...) 
+      cpl                        ;(class ...)
+      slots                      ;((name . options) ...)
       nfields                    ;an integer
       field-initializers         ;(proc ...)
       getters-n-setters))        ;((slot-name getter setter) ...)
@@ -554,7 +554,7 @@
 ; The initialization protocol
 ;
 (define initialize (make-generic))
-	    
+
 
 ;
 ; The instance structure protocol.
@@ -582,7 +582,7 @@
 
 ;
 ; The next thing to do is bootstrap generic functions.
-; 
+;
 (define generic-invocation-generics (list compute-apply-generic
 					  compute-methods
 					  compute-method-more-specific?
@@ -610,7 +610,7 @@
 ; In order to add our first method to COMPUTE-APPLY-GENERIC, we need
 ; something sitting there, so it can be called.  The first definition
 ; below does that.
-; 
+;
 ; Then, the second definition solves both the infinite regress and the
 ; not having enough of the protocol around to build itself problem the
 ; same way: it special cases invocation of generics in the invocation

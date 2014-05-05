@@ -59,7 +59,7 @@ slot filling initargs, beta-like languages, singleton methods etc.
 To make distribution simple, Tiny CLOS is available by anonymous ftp
 from parcftp.xerox.com:/pub/mops.  There are five files of interest:
 
-  
+
  tiny-annouce.text  This message.
 
  support.scm        Just a bunch of useful stuff.

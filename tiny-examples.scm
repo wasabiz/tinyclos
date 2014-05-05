@@ -2,8 +2,8 @@
 ;
 ;
 ; **********************************************************************
-; Copyright (c) 1992 Xerox Corporation.  
-; All Rights Reserved.  
+; Copyright (c) 1992 Xerox Corporation.
+; All Rights Reserved.
 ;
 ; Use, reproduction, and preparation of derivative works are permitted.
 ; Any copy of this software or of any derivative work must include the
@@ -22,7 +22,7 @@
 ; **********************************************************************
 ;
 ; Some simple examples of using Tiny CLOS and its MOP.
-; 
+;
 ; Much of this stuff corresponds to stuff in AMOP (The Art of the
 ; Metaobject Protocol).
 ;
@@ -58,8 +58,8 @@
 ;
 ;
 
-(define <pos> (make <class>                          ;[make-class 
-		    'direct-supers (list <object>)   ;  (list <object>) 
+(define <pos> (make <class>                          ;[make-class
+		    'direct-supers (list <object>)   ;  (list <object>)
 		    'direct-slots  (list 'x 'y)))    ;  (list 'x 'y)]
 
 (add-method initialize
@@ -87,7 +87,7 @@
 
 (let ((x (vector 'x))
       (y (vector 'y)))
-  
+
   (set! <pos> (make <class>
 		    'direct-supers (list <object>)
 		    'direct-slots  (list x y)))
@@ -233,7 +233,7 @@
 (add-method dynamic-slot?
     (make-method (list <all-dynamic-class>)
       (lambda (call-next-method class slot) #t)))
-	    
+
 
 
 ;
@@ -282,7 +282,7 @@
 	       (id-setter (cadr id-g-n-s))
 	       (slot-name (car slot)))
 	  (list (lambda (o)
-		  (db-lookup (id-getter o) slot-name)) 
+		  (db-lookup (id-getter o) slot-name))
 		(lambda (o new)
 		  (db-store  (id-getter o) slot-name new)))))))
 
